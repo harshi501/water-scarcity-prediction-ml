@@ -1,0 +1,114 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:"Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body{
+            min-height:100vh;
+            background: url("{% static 'images/water_bg.jpg' %}") no-repeat center center/cover;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            position:relative;
+        }
+
+        body::before{
+            content:"";
+            position:absolute;
+            inset:0;
+            background: rgba(0,0,0,0.65);
+        }
+
+        .login-box{
+            position:relative;
+            z-index:2;
+            width:100%;
+            max-width:400px;
+            padding:35px;
+            border-radius:16px;
+            background: rgba(255,255,255,0.10);
+            backdrop-filter: blur(14px);
+            box-shadow: 0 12px 45px rgba(0,0,0,0.5);
+            color:#fff;
+        }
+
+        .login-box h2{
+            text-align:center;
+            margin-bottom:20px;
+            font-size:26px;
+        }
+
+        .msg{
+            background: rgba(239,68,68,0.2);
+            border: 1px solid rgba(239,68,68,0.4);
+            padding:10px;
+            border-radius:8px;
+            margin-bottom:12px;
+            text-align:center;
+            font-weight:600;
+        }
+
+        input{
+            width:100%;
+            padding:12px;
+            margin:8px 0;
+            border:none;
+            border-radius:8px;
+            outline:none;
+            font-size:14px;
+        }
+
+        button{
+            width:100%;
+            padding:12px;
+            margin-top:12px;
+            border:none;
+            border-radius:8px;
+            font-weight:700;
+            color:#fff;
+            cursor:pointer;
+            background: linear-gradient(45deg, #ff512f, #dd2476);
+            transition:0.3s ease;
+        }
+
+        button:hover{
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+        }
+
+        @media(max-width:500px){
+            .login-box{ margin:20px; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="login-box">
+        <h2>Admin Login</h2>
+
+        {% for message in messages %}
+            <div class="msg">{{ message }}</div>
+        {% endfor %}
+
+        <form method="POST">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+</body>
+</html>

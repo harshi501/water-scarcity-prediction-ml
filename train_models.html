@@ -1,0 +1,379 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Train Models</title>
+
+  <style>
+    :root{
+      --text:#eaf2ff;
+      --muted:rgba(234,242,255,.72);
+      --stroke:rgba(255,255,255,.14);
+      --shadow:0 18px 45px rgba(0,0,0,.45);
+      --radius:18px;
+      --panel:rgba(255,255,255,.10);
+      --accent:#00b4db;
+      --accent2:#0083b0;
+      --good:#22c55e;
+      --warn:#f59e0b;
+      --bad:#ef4444;
+    }
+
+    *{ box-sizing:border-box; margin:0; padding:0; font-family:"Segoe UI",Tahoma,Verdana,sans-serif; }
+
+    body{
+      min-height:100vh;
+      color:var(--text);
+      background:url("{% static 'images/water_bg.jpg' %}") no-repeat center center/cover;
+      position:relative;
+      overflow-x:hidden;
+    }
+    body::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:rgba(0,0,0,.65);
+      z-index:0;
+    }
+
+    /* Navbar */
+    header{
+      position:relative;
+      z-index:2;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:20px 60px;
+      gap:16px;
+    }
+    .title{
+      font-size:22px;
+      font-weight:900;
+      letter-spacing:.3px;
+      text-shadow: 0 10px 25px rgba(0,0,0,.35);
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    nav{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      justify-content:flex-end;
+    }
+    nav a{
+      text-decoration:none;
+      color:#fff;
+      font-weight:700;
+      padding:10px 14px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.08);
+      backdrop-filter: blur(10px);
+      transition:.25s ease;
+    }
+    nav a:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 12px 25px rgba(0,0,0,.35);
+      background: rgba(255,255,255,.12);
+    }
+
+    /* Layout */
+    .wrap{
+      position:relative;
+      z-index:2;
+      max-width:1200px;
+      margin: 20px auto 60px;
+      padding: 0 20px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:16px;
+    }
+
+    .panel{
+      background:var(--panel);
+      border:1px solid var(--stroke);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      backdrop-filter: blur(12px);
+      padding:18px;
+    }
+
+    .panel h2{
+      font-size:22px;
+      margin-bottom:6px;
+    }
+    .panel p.sub{
+      color:var(--muted);
+      font-size:14px;
+      margin-bottom:12px;
+      line-height:1.5;
+    }
+
+    /* Messages */
+    .msg{
+      padding:10px 12px;
+      border-radius:14px;
+      margin: 10px 0;
+      font-weight:800;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.07);
+    }
+    .msg.success{ border-color: rgba(34,197,94,.35); }
+    .msg.error{ border-color: rgba(239,68,68,.35); }
+
+    /* Train button */
+    .actions{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .btn{
+      border:none;
+      cursor:pointer;
+      padding:12px 18px;
+      border-radius:12px;
+      color:#fff;
+      font-weight:900;
+      background: linear-gradient(45deg, var(--accent), var(--accent2));
+      transition:.25s ease;
+    }
+    .btn:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 12px 25px rgba(0,0,0,.35);
+    }
+    .hint{
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* Metric cards */
+    .metrics{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap:12px;
+      margin-top: 8px;
+    }
+    .metric{
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.22);
+      border-radius: 16px;
+      padding: 14px;
+    }
+    .metric .k{
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .35px;
+      margin-bottom: 6px;
+    }
+    .metric .v{
+      font-size: 22px;
+      font-weight: 900;
+      word-break: break-word;
+    }
+
+    /* Images grid */
+    .img-grid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+    .img-card{
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.22);
+      border-radius: 16px;
+      padding: 12px;
+    }
+    .img-card h4{
+      font-size: 14px;
+      margin-bottom: 10px;
+      color: rgba(234,242,255,.92);
+    }
+    .img-card img{
+      width:100%;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.12);
+      display:block;
+    }
+
+    /* Code blocks */
+    pre{
+      margin-top: 10px;
+      background: rgba(0,0,0,.35);
+      border: 1px solid rgba(255,255,255,.12);
+      padding: 12px;
+      border-radius: 14px;
+      overflow-x:auto;
+      color: rgba(234,242,255,.92);
+      line-height:1.5;
+      font-size: 13px;
+    }
+
+    .paths{
+      margin-top: 10px;
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.22);
+      color: rgba(234,242,255,.92);
+      line-height:1.6;
+      font-size: 13px;
+    }
+    .paths b{ color: #fff; }
+
+    footer{
+      position:relative;
+      z-index:2;
+      text-align:center;
+      padding:14px 10px;
+      color: rgba(234,242,255,.65);
+      font-size: 13px;
+    }
+
+    @media (max-width: 950px){
+      header{ padding:18px 18px; }
+      .metrics{ grid-template-columns: 1fr; }
+      .img-grid{ grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="title">🤖 Train ML Models – Admin</div>
+  <nav>
+    <a href="{% url 'upload_dataset' %}">Upload Dataset</a>
+    <a href="{% url 'preprocess_dataset' %}">Preprocess Dataset</a>
+    <a href="{% url 'train_models' %}">Train Models</a>
+    <a href="{% url 'admin_logout' %}">Logout</a>
+  </nav>
+</header>
+
+<div class="wrap">
+
+  <!-- ACTION PANEL -->
+  <div class="panel">
+    <h2>Start Training</h2>
+    <p class="sub">
+      This step trains regression (availability prediction) and classification (scarcity level) models.
+      Click <b>Train Models</b> to generate metrics and graphs.
+    </p>
+
+    {% for message in messages %}
+      <div class="msg {% if message.tags == 'success' %}success{% else %}error{% endif %}">
+        {{ message }}
+      </div>
+    {% endfor %}
+
+    <form method="POST">
+      {% csrf_token %}
+      <div class="actions">
+        <button type="submit" class="btn">Train Models</button>
+        <div class="hint">Tip: Run preprocessing before training for best accuracy.</div>
+      </div>
+    </form>
+  </div>
+
+  {% if results.mae %}
+
+  <!-- REGRESSION -->
+  <div class="panel">
+    <h2>📌 Regression Metrics (Linear Regression)</h2>
+    <p class="sub">Regression predicts <b>water availability (MLD)</b> based on input features.</p>
+
+    <div class="metrics">
+      <div class="metric">
+        <div class="k">MAE</div>
+        <div class="v">{{ results.mae }}</div>
+      </div>
+      <div class="metric">
+        <div class="k">RMSE</div>
+        <div class="v">{{ results.rmse }}</div>
+      </div>
+      <div class="metric">
+        <div class="k">R²</div>
+        <div class="v">{{ results.r2 }}</div>
+      </div>
+    </div>
+
+    {% if results.reg_graph %}
+      <div class="img-grid">
+        <div class="img-card">
+          <h4>📈 Actual vs Predicted (Linear Regression)</h4>
+          <img src="/{{ results.reg_graph }}" alt="Linear Regression Graph">
+        </div>
+      </div>
+    {% endif %}
+  </div>
+
+  <!-- CLASSIFICATION -->
+  <div class="panel">
+    <h2>📌 Classification Metrics (Random Forest)</h2>
+    <p class="sub">Classification predicts scarcity level: <b>Low / Medium / High</b>.</p>
+
+    <div class="metrics">
+      <div class="metric">
+        <div class="k">Accuracy</div>
+        <div class="v">{{ results.accuracy }}</div>
+      </div>
+      <div class="metric">
+        <div class="k">Model</div>
+        <div class="v">Random Forest</div>
+      </div>
+      <div class="metric">
+        <div class="k">Output</div>
+        <div class="v">Low/Medium/High</div>
+      </div>
+    </div>
+
+    <div class="img-grid">
+      {% if results.cls_graph %}
+      <div class="img-card">
+        <h4>📊 Confusion Matrix (Graph)</h4>
+        <img src="/{{ results.cls_graph }}" alt="Confusion Matrix Graph">
+      </div>
+      {% endif %}
+
+      {% if results.overall_graph %}
+      <div class="img-card">
+        <h4>📊 Overall Metrics (Accuracy / Precision / Recall / F1)</h4>
+        <img src="/{{ results.overall_graph }}" alt="Overall Metrics Graph">
+      </div>
+      {% endif %}
+
+      {% if results.class_graph %}
+      <div class="img-card">
+        <h4>📊 Class-wise Metrics (Low / Medium / High)</h4>
+        <img src="/{{ results.class_graph }}" alt="Class-wise Metrics Graph">
+      </div>
+      {% endif %}
+    </div>
+
+    <h3 style="margin-top:14px;">Confusion Matrix (Values)</h3>
+    <pre>{{ results.confusion_matrix }}</pre>
+
+    <h3 style="margin-top:14px;">Classification Report</h3>
+    <pre>{{ results.report }}</pre>
+
+    <div class="paths">
+      <b>Saved Models</b><br>
+      Regression Model: {{ results.reg_path }}<br>
+      Classification Model: {{ results.clf_path }}
+    </div>
+  </div>
+
+  {% endif %}
+
+</div>
+
+<footer>© 2026 Water Management AI System</footer>
+
+</body>
+</html>

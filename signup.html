@@ -1,0 +1,150 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Signup</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: url("{% static 'images/water_bg.jpg' %}") no-repeat center center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            top: 0;
+            left: 0;
+        }
+
+        .signup-box {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 420px;
+            padding: 35px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            color: #fff;
+        }
+
+        .signup-box h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .signup-box label {
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .signup-box input,
+        .signup-box textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            border: none;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .signup-box textarea {
+            resize: none;
+            height: 70px;
+        }
+
+        .signup-box input[type="submit"] {
+            background: linear-gradient(45deg, #36d1dc, #5b86e5);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .signup-box input[type="submit"]:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+        }
+
+        .msg {
+            text-align: center;
+            color: #ff6b6b;
+            margin-bottom: 10px;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .login-link a {
+            color: #00d4ff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        @media(max-width:500px){
+            .signup-box {
+                margin: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="signup-box">
+        <h2>User Registration</h2>
+
+        {% if msg %}
+            <div class="msg">{{ msg }}</div>
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+            <label>Username</label>
+            <input type="text" name="t1" required>
+
+            <label>Password</label>
+            <input type="password" name="t2" required>
+
+            <label>Contact No</label>
+            <input type="text" name="t3" required>
+
+            <label>Email</label>
+            <input type="email" name="t4" required>
+
+            <label>Address</label>
+            <textarea name="t5" required></textarea>
+
+            <input type="submit" value="Create Account">
+        </form>
+
+        <div class="login-link">
+            <a href="{% url 'login' %}">Already have an account? Login</a>
+            <li><a href="{% url 'admin_login' %}" class="admin-btn">Admin Login</a></li>
+        </div>
+    </div>
+
+</body>
+</html>

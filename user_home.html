@@ -1,0 +1,150 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: url("{% static 'images/water_bg.jpg' %}") no-repeat center center/cover;
+            position: relative;
+            color: #fff;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+
+        header {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+        }
+
+        .title {
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        nav a {
+            text-decoration: none;
+            margin-left: 15px;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 600;
+            color: #fff;
+            background: linear-gradient(45deg, #00b4db, #0083b0);
+            transition: 0.3s ease;
+        }
+
+        nav a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+        }
+
+        .dashboard {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            margin-top: 120px;
+            padding: 20px;
+        }
+
+        .dashboard h2 {
+            font-size: 34px;
+            margin-bottom: 10px;
+        }
+
+        .dashboard p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            color: #ddd;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            text-decoration: none;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            color: white;
+            background: linear-gradient(45deg, #36d1dc, #5b86e5);
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+        }
+
+        footer {
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+            font-size: 13px;
+            color: #ccc;
+            z-index: 2;
+        }
+
+        @media(max-width:768px){
+            header {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .dashboard h2 {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="title">Water Scarcity ML System</div>
+        <nav>
+            <a href="{% url 'index' %}">Logout</a>
+        </nav>
+    </header>
+
+    <div class="dashboard">
+        <h2>User Dashboard</h2>
+        <p>Welcome, {{ user }}</p>
+
+        <div class="actions">
+            <a href="{% url 'user_predict' %}" class="btn">Water Scarcity Prediction</a>
+        </div>
+    </div>
+
+    <footer>© 2026 Water Management AI System</footer>
+
+</body>
+</html>

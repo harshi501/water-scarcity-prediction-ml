@@ -1,0 +1,32 @@
+
+
+Year:2025, Month:12, Rainfall_mm:197.1, Temperature_C:26.0, Water_Consumption_MLD:629.8, Reservoir_Level_MCM:223.3, Population:1238610
+Year:2025, Month:3, Rainfall_mm:191.4, Temperature_C:28.7, Water_Consumption_MLD:580.2, Reservoir_Level_MCM:201.9, Population:1161142
+Year:2025, Month:8, Rainfall_mm:192.7, Temperature_C:26.5, Water_Consumption_MLD:598.9, Reservoir_Level_MCM:222.7, Population:1237545
+Year:2025, Month:10, Rainfall_mm:190.1, Temperature_C:25.5, Water_Consumption_MLD:584.1, Reservoir_Level_MCM:201.5, Population:1228887
+Year:2025, Month:2, Rainfall_mm:200.7, Temperature_C:28.3, Water_Consumption_MLD:611.9, Reservoir_Level_MCM:217.4, Population:1160629
+Year:2025, Month:1, Rainfall_mm:206.4, Temperature_C:27.8, Water_Consumption_MLD:592.0, Reservoir_Level_MCM:205.1, Population:1165523
+Year:2025, Month:4, Rainfall_mm:191.7, Temperature_C:27.4, Water_Consumption_MLD:594.5, Reservoir_Level_MCM:208.9, Population:1151416
+Year:2025, Month:1, Rainfall_mm:194.5, Temperature_C:26.7, Water_Consumption_MLD:588.3, Reservoir_Level_MCM:217.1, Population:1165734
+Year:2025, Month:1, Rainfall_mm:200.8, Temperature_C:25.9, Water_Consumption_MLD:623.6, Reservoir_Level_MCM:215.8, Population:1196882
+Year:2025, Month:7, Rainfall_mm:195.6, Temperature_C:28.8, Water_Consumption_MLD:613.6, Reservoir_Level_MCM:200.2, Population:1236601
+Year:2025, Month:9, Rainfall_mm:83.8, Temperature_C:30.1, Water_Consumption_MLD:657.7, Reservoir_Level_MCM:145.8, Population:1492161
+Year:2025, Month:5, Rainfall_mm:79.8, Temperature_C:30.9, Water_Consumption_MLD:630.6, Reservoir_Level_MCM:150.6, Population:1522598
+Year:2025, Month:12, Rainfall_mm:89.1, Temperature_C:30.3, Water_Consumption_MLD:658.3, Reservoir_Level_MCM:160.8, Population:1514360
+Year:2025, Month:10, Rainfall_mm:73.3, Temperature_C:29.0, Water_Consumption_MLD:675.6, Reservoir_Level_MCM:151.9, Population:1459039
+Year:2025, Month:9, Rainfall_mm:76.4, Temperature_C:29.3, Water_Consumption_MLD:650.5, Reservoir_Level_MCM:165.7, Population:1504455
+Year:2025, Month:6, Rainfall_mm:79.4, Temperature_C:32.7, Water_Consumption_MLD:669.3, Reservoir_Level_MCM:150.5, Population:1453305
+Year:2025, Month:2, Rainfall_mm:76.8, Temperature_C:29.9, Water_Consumption_MLD:660.9, Reservoir_Level_MCM:158.6, Population:1532038
+Year:2025, Month:9, Rainfall_mm:77.6, Temperature_C:32.1, Water_Consumption_MLD:672.8, Reservoir_Level_MCM:166.6, Population:1523925
+Year:2025, Month:10, Rainfall_mm:75.4, Temperature_C:31.3, Water_Consumption_MLD:655.1, Reservoir_Level_MCM:170.7, Population:1516097
+Year:2025, Month:9, Rainfall_mm:74.9, Temperature_C:31.7, Water_Consumption_MLD:672.1, Reservoir_Level_MCM:165.2, Population:1517981
+Year:2025, Month:3, Rainfall_mm:35.7, Temperature_C:34.2, Water_Consumption_MLD:764.2, Reservoir_Level_MCM:124.6, Population:1788596
+Year:2025, Month:10, Rainfall_mm:31.5, Temperature_C:33.7, Water_Consumption_MLD:730.9, Reservoir_Level_MCM:105.2, Population:1821024
+Year:2025, Month:1, Rainfall_mm:24.5, Temperature_C:34.6, Water_Consumption_MLD:761.0, Reservoir_Level_MCM:126.4, Population:1779950
+Year:2025, Month:3, Rainfall_mm:23.5, Temperature_C:36.7, Water_Consumption_MLD:759.6, Reservoir_Level_MCM:124.6, Population:1840697
+Year:2025, Month:1, Rainfall_mm:24.2, Temperature_C:36.7, Water_Consumption_MLD:757.7, Reservoir_Level_MCM:108.4, Population:1833934
+Year:2025, Month:5, Rainfall_mm:25.6, Temperature_C:36.8, Water_Consumption_MLD:761.3, Reservoir_Level_MCM:107.2, Population:1831106
+Year:2025, Month:5, Rainfall_mm:20.6, Temperature_C:34.8, Water_Consumption_MLD:726.5, Reservoir_Level_MCM:129.6, Population:1764273
+Year:2025, Month:3, Rainfall_mm:39.1, Temperature_C:35.9, Water_Consumption_MLD:751.6, Reservoir_Level_MCM:105.1, Population:1799180
+Year:2025, Month:12, Rainfall_mm:26.9, Temperature_C:34.6, Water_Consumption_MLD:732.1, Reservoir_Level_MCM:128.1, Population:1825739
+Year:2025, Month:6, Rainfall_mm:35.4, Temperature_C:36.0, Water_Consumption_MLD:729.7, Reservoir_Level_MCM:119.1, Population:1820029

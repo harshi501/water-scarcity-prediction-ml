@@ -1,0 +1,123 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        :root{
+            --text:#eaf2ff;
+            --muted:rgba(234,242,255,.72);
+            --stroke:rgba(255,255,255,.14);
+            --shadow:0 18px 45px rgba(0,0,0,.45);
+            --radius:18px;
+            --accent:#00b4db;
+            --accent2:#0083b0;
+            --panel:rgba(255,255,255,.10);
+        }
+
+        *{box-sizing:border-box;margin:0;padding:0;font-family:"Segoe UI",Tahoma,Verdana,sans-serif;}
+
+        body{
+            min-height:100vh;
+            background: url("{% static 'images/water_bg.jpg' %}") no-repeat center center/cover;
+            color:var(--text);
+            position:relative;
+        }
+        body::before{
+            content:"";
+            position:absolute;
+            inset:0;
+            background:rgba(0,0,0,.65);
+        }
+
+        header{
+            position:relative;
+            z-index:2;
+            padding:25px 60px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+        }
+
+        .title{
+            font-size:24px;
+            font-weight:700;
+        }
+
+        .admin-name{
+            font-size:16px;
+            color:var(--muted);
+        }
+
+        .dashboard{
+            position:relative;
+            z-index:2;
+            max-width:1000px;
+            margin:40px auto;
+            padding:20px;
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+            gap:20px;
+        }
+
+        .card{
+            background:var(--panel);
+            border:1px solid var(--stroke);
+            border-radius:var(--radius);
+            padding:25px 20px;
+            text-align:center;
+            text-decoration:none;
+            color:#fff;
+            font-weight:700;
+            font-size:16px;
+            backdrop-filter:blur(12px);
+            box-shadow:var(--shadow);
+            transition:.3s ease;
+        }
+
+        .card:hover{
+            transform:translateY(-5px);
+            box-shadow:0 25px 55px rgba(0,0,0,.55);
+        }
+
+        footer{
+            position:absolute;
+            bottom:10px;
+            width:100%;
+            text-align:center;
+            color:#ccc;
+            font-size:13px;
+            z-index:2;
+        }
+
+        @media(max-width:768px){
+            header{
+                flex-direction:column;
+                gap:10px;
+                text-align:center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="title">Water Scarcity ML – Admin Panel</div>
+    <div class="admin-name">Welcome, {{ request.session.admin_name }}</div>
+</header>
+
+<div class="dashboard">
+    <a href="{% url 'upload_dataset' %}" class="card">📂 Upload Dataset</a>
+    <a href="{% url 'preprocess_dataset' %}" class="card">⚙️ Preprocess Dataset</a>
+    <a href="{% url 'train_models' %}" class="card">🤖 Train Models</a>
+    <a href="{% url 'admin_logout' %}" class="card">🚪 Logout</a>
+</div>
+
+<footer>© 2026 Water Management AI System</footer>
+
+</body>
+</html>
